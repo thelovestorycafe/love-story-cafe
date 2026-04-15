@@ -1,0 +1,53 @@
+.wrapper {
+    margin-bottom: 36px;
+}
+
+.label {
+    margin-bottom: 0;
+    font-family: "Righteous", sans-serif;
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.heading {
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-semibold);
+    line-height: 1.2;
+    color: var(--text-primary);
+    letter-spacing: -0.05px;
+}
+
+.center {
+    text-align: center;
+}
+
+.center .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.subtitle {
+    margin-top: var(--space-xs);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    max-width: 500px;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        margin-bottom: 24px;
+    }
+
+    .heading {
+        font-size: var(--fs-xl);
+        line-height: 1.3;
+    }
+
+    .label {
+        font-size: var(--fs-xs);
+    }
+}

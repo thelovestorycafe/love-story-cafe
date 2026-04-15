@@ -1,0 +1,88 @@
+.menuWrapper {
+    padding-bottom: 60px;
+}
+
+.banner {
+    margin: 24px 0 40px;
+    height: 240px;
+    position: relative;
+    border-radius: 22px;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url("./images/food-banner.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.overlay {
+    padding: var(--space-lg);
+    height: 100%;
+    color: var(--surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.overlay h2 {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    color: var(--surface);
+}
+
+.overlay p {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-sm);
+    color: var(--accent);
+}
+
+.menuTop {
+    margin: var(--space-lg) 0 var(--space-sm);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    font-weight: var(--fw-medium);
+}
+
+.listing {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+@media (max-width: 1200px) {
+    .listing {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .banner {
+        height: 200px;
+        border-radius: var(--radius-lg);
+    }
+
+    .overlay h2 {
+        font-size: var(--fs-xl);
+    }
+
+    .listing {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 180px;
+    }
+
+    .overlay {
+        padding: var(--space-md);
+    }
+
+    .listing {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+}

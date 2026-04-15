@@ -1,0 +1,190 @@
+.heroBanner {
+    width: 100%;
+    height: 620px;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroBanner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.75) 0%,
+            rgba(0, 0, 0, 0.55) 40%,
+            rgba(0, 0, 0, 0.25) 100%);
+    z-index: 1;
+}
+
+.heroBanner>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right;
+    transition: transform 8s ease;
+}
+
+.heroBanner:hover img {
+    transform: scale(1.05);
+}
+
+.bannerContent {
+    max-width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    z-index: 5;
+    text-align: left;
+    color: #ffffff;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+.subtitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffb26b;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.bannerContent h1 {
+    margin-bottom: 20px;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--surface);
+}
+
+.bannerContent h1 span {
+    color: #ffb26b;
+    display: block;
+}
+
+.bannerContent p {
+    margin-bottom: 28px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+.heroActions {
+    display: flex;
+    gap: 16px;
+}
+
+.heroActions button:first-child {
+    background: #ffb26b;
+    color: #000;
+    border-radius: 30px;
+}
+
+.heroActions button:last-child {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    border-radius: 30px;
+}
+
+.heroActions button {
+    min-width: 170px;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+}
+
+.heroActions button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+
+    .heroBanner {
+        height: 560px;
+    }
+
+    .bannerContent {
+        max-width: 520px;
+        left: 6%;
+    }
+
+    .bannerContent h1 {
+        font-size: 44px;
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .heroBanner {
+        height: 520px;
+    }
+
+    .heroBanner::before {
+        background: linear-gradient(90deg,
+                rgba(0, 0, 0, 0.75) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .bannerContent {
+        max-width: 90%;
+        left: 5%;
+        top: 55%;
+        transform: translateY(-50%);
+        text-align: left;
+    }
+
+    .bannerContent h1 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .bannerContent p {
+        font-size: 14px;
+    }
+
+    .heroActions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .heroActions button {
+        min-width: 100%;
+        padding: 8px 14px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+
+    .heroBanner {
+        height: 400px;
+    }
+
+    .bannerContent h1 {
+        font-size: 26px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+    }
+}

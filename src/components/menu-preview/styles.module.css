@@ -1,0 +1,15 @@
+.menuSection {
+    padding: var(--space-3xl) 0;
+}
+
+.menuGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+@media(max-width:768px) {
+    .menuGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,22 @@
+.authWrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #0a0a0a);
+}
+
+.authBox {
+    width: 380px;
+    padding: 30px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.authBox h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #f5f5f5;
+}

@@ -1,0 +1,55 @@
+.slick-list {
+    margin: 0 -8px;
+}
+
+.slick-slide>div {
+    padding: 0 8px;
+}
+
+.slick-prev,
+.slick-next {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 3px 9px rgba(127, 134, 148, 0.08);
+    cursor: pointer;
+    z-index: 1;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.slick-prev {
+    left: -20px !important;
+}
+
+.slick-next {
+    right: -20px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    width: 20px;
+    height: 20px;
+    content: "";
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+    background: var(--surface);
+}
+
+.slick-prev:before {
+    background: url(../assets/icon/chevron-left.svg);
+    background-size: 100% 100%;
+}
+
+.slick-next:before {
+    background: url(../assets/icon/chevron-right.svg);
+    background-size: 100% 100%;
+}

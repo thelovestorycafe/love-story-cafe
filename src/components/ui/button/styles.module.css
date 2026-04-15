@@ -1,0 +1,108 @@
+.btn {
+    padding: 10px 22px;
+    min-height: 44px;
+    border-radius: var(--radius-md);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--transition),
+        color var(--transition),
+        transform 0.2s ease,
+        box-shadow var(--transition);
+}
+
+/* ===== PRIMARY ===== */
+.btnPrimary {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(214, 40, 40, 0.2);
+}
+
+.btnPrimary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(214, 40, 40, 0.3);
+}
+
+/* ===== SECONDARY ===== */
+.btnSecondary {
+    background: var(--secondary);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btnSecondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== ACCENT (FIXED) ===== */
+.btnAccent {
+    background: var(--accent);
+    color: var(--secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+.btnAccent:hover {
+    background: #e9d5c0;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== OUTLINE ===== */
+.btnOutline {
+    background: transparent;
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+}
+
+.btnOutline:hover {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(214, 40, 40, 0.25);
+}
+
+/* ===== FULL WIDTH ===== */
+.fullWidth {
+    width: 100%;
+}
+
+/* ===== SMALL SIZE ===== */
+.btnSm {
+    padding: 8px 16px;
+    font-size: 13px;
+    min-height: 36px;
+}
+
+/* ===== DISABLED ===== */
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ===== ACTIVE (soft press) ===== */
+.btn:active {
+    transform: scale(0.96);
+}
+
+/* ===== FOCUS (ACCESSIBILITY 🔥) ===== */
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.3);
+}
+
+/* ===== ICON ===== */
+.icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}

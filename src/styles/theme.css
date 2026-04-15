@@ -1,0 +1,275 @@
+:root {
+
+    /* ======================== BRAND (LOGO BASED) ======================== */
+    --primary: #D62828;
+    --primary-dark: #9B1C1C;
+    --primary-light: #F77F7F;
+
+    /* ======================== SUPPORT COLORS ======================== */
+    --secondary: #3E2723;
+    --accent: #F5E6D3;
+
+    /* ======================== BACKGROUND ======================== */
+    --bg-main: #FFF8F2;
+    --bg-soft: #FAF3E8;
+    --surface: #FFFFFF;
+
+    /* ======================== TEXT ======================== */
+    --text-primary: #2B2B2B;
+    --text-secondary: #6D6D6D;
+    --text-muted: #9E9E9E;
+
+    /* ======================== BORDER ======================== */
+    --border: #E6D3C3;
+
+    /* ======================== STATUS ======================== */
+    --success: #2E7D32;
+    --warning: #ED6C02;
+    --error: #D32F2F;
+
+    /* ======================== GRADIENTS ======================== */
+    --gradient-primary: linear-gradient(135deg, #D62828, #9B1C1C);
+    --gradient-cream: linear-gradient(135deg, #FFF8F2, #F5E6D3);
+
+    /* ======================== TYPOGRAPHY ======================== */
+    --font-heading: 'Jost', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 24px;
+    --fs-2xl: 28px;
+    --fs-3xl: 36px;
+    --fs-4xl: 48px;
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* ======================== SPACING ======================== */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+
+    /* ======================== RADIUS ======================== */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-md-lg: 16px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --radius-round: 50%;
+
+    /* ======================== SHADOW ======================== */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.10);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.18);
+
+    /* ======================== TRANSITION ======================== */
+    --transition: 0.3s ease;
+}
+
+
+/* ================= BASE ================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-bold);
+}
+
+h2 {
+    font-size: var(--fs-3xl);
+}
+
+h3 {
+    font-size: var(--fs-2xl);
+}
+
+p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ================= CONTAINER ================= */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+
+/* ================= CARD ================= */
+.card {
+    background: var(--surface);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* ================= INPUT ================= */
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text-primary);
+    font-size: var(--fs-md);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+
+/* ================= BUTTON ================= */
+.btn {
+    padding: 10px 18px;
+    border-radius: var(--radius-xl);
+    border: none;
+    cursor: pointer;
+    font-size: var(--fs-sm);
+    transition: var(--transition);
+}
+
+/* Primary */
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+/* Outline */
+.btn-outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+
+/* ================= SECTION ================= */
+.section {
+    padding: var(--space-2xl) 0;
+}
+
+.section-soft {
+    background: var(--bg-soft);
+}
+
+
+/* ================= UTILITIES ================= */
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.mt-sm {
+    margin-top: var(--space-sm);
+}
+
+.mt-md {
+    margin-top: var(--space-md);
+}
+
+.mt-lg {
+    margin-top: var(--space-lg);
+}
+
+.mb-sm {
+    margin-bottom: var(--space-sm);
+}
+
+.mb-md {
+    margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+    margin-bottom: var(--space-lg);
+}
+
+.rounded {
+    border-radius: var(--radius-lg);
+}
+
+.shadow {
+    box-shadow: var(--shadow-md);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-accent {
+    color: var(--accent);
+}

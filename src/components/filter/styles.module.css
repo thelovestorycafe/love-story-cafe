@@ -1,0 +1,37 @@
+.categoryBar {
+    margin: var(--space-sm) 0 var(--space-xl);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.catBtn {
+    min-width: 100px;
+    min-height: auto;
+    padding: 8px var(--space-md);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text-primary);
+    font-size: var(--fs-sm);
+    text-transform: inherit;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+
+.catBtn:hover {
+    color: #fff;
+}
+
+.catBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(214, 40, 40, 0.3);
+}
