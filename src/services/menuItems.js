@@ -1,18 +1,25 @@
 import tea from "../assets/images/tea.png";
+import coffee from "../assets/images/coffee.png";
+import mocktail from "../assets/images/mocktail.png";
+import shake from "../assets/images/shake.png";
+import pizza from "../assets/images/pizza.png";
+import pasta from "../assets/images/pasta.png";
+import noodles from "../assets/images/noodles.png";
+import friedRice from "../assets/images/fried-rice.png";
 
 const defaultImage = tea;
 
-const categoryImages = {
-    tea: tea,
-    coffee: tea,
-    mocktail: tea,
-    shake: tea,
-    pizza: tea,
-    pasta: tea,
-    noodles: tea,
-    friedrice: tea,
-};
 
+const categoryImages = {
+    tea,
+    coffee,
+    mocktail,
+    shake,
+    pizza,
+    pasta,
+    noodles,
+    friedrice: friedRice,
+};
 const rawMenuItems = [
     /* TEA */
     { id: 1, category: "Tea", title: "Assam Tea", price: 110, desc: "Strong and refreshing classic Assam tea", type: "veg" },
@@ -72,8 +79,10 @@ const rawMenuItems = [
     { id: 41, category: "Friedrice", title: "Chicken Fried Rice", price: 269, desc: "Chicken fried rice", type: "non-veg" },
     { id: 42, category: "Friedrice", title: "Mix Fried Rice", price: 349, desc: "Mixed meat fried rice", type: "non-veg" },
 ];
-
 export const menuItems = rawMenuItems.map((item) => ({
     ...item,
-    image: item.image ?? categoryImages[item.category] ?? defaultImage,
+    image:
+        item.image ??
+        categoryImages[item.category.toLowerCase()] ??
+        defaultImage,
 }));
