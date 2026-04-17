@@ -78,17 +78,18 @@ const Header = () => {
 
             <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ""}`}>
                 <div className={styles.mobileHeader}>
-                    <h3>Menu</h3>
+                    <h3>Explore</h3>
                     <span onClick={() => setMenuOpen(false)}>
                         <img width={16} height={16} src={closeIcon} alt="Close" />
                     </span>
                 </div>
-
-                <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
-                <NavLink to="/menu" onClick={() => setMenuOpen(false)}>Menu</NavLink>
-                <NavLink to="/about-us" onClick={() => setMenuOpen(false)}>About</NavLink>
-                <NavLink to="/contact-us" onClick={() => setMenuOpen(false)}>Contact</NavLink>
-                <NavLink to="/book-table" onClick={() => setMenuOpen(false)}>Reserve</NavLink>
+                <ul className={styles.mobileMenuLink}>
+                    <li><NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink></li>
+                    <li><NavLink to="/menu" onClick={() => setMenuOpen(false)}>Menu</NavLink></li>
+                    <li><NavLink to="/about-us" onClick={() => setMenuOpen(false)}>About</NavLink></li>
+                    <li><NavLink to="/contact-us" onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
+                    <li><NavLink to="/book-table" onClick={() => setMenuOpen(false)}>Reserve</NavLink></li>
+                </ul>
 
                 <div className={styles.mobileUser}>
                     <UserProfile currentUser={currentUser} onCloseDrawer={() => setMenuOpen(false)} />

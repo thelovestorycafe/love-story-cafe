@@ -130,13 +130,9 @@
     align-items: center;
 }
 
-.mobileMenu a {
-    padding: 12px;
-    border-radius: 6px;
-}
-
-.mobileMenu a:hover {
-    background: var(--bg-soft);
+.mobileMenuLink {
+    display: grid;
+    gap: var(--space-sm);
 }
 
 .mobileUser {
