@@ -1,54 +1,134 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
+
 import userIcon from "../../assets/icon/user-icon.svg";
 import profileIcon from "../../assets/icon/profile-icon.svg";
 import logOut from "../../assets/icon/logout-icon.svg";
 import carIcon from "../../assets/icon/cart.svg";
 
-const UserProfile = ({ currentUser }) => {
+const UserProfile = ({ currentUser, onCloseDrawer }) => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const wrapperRef = useRef();
 
-    const handleLogin = () => navigate("/login");
+    const [open, setOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setOpen(false);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, []);
+
+    const handleLogin = () => {
+        setOpen(false);
+        onCloseDrawer?.();
+        navigate("/login");
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("currentUser");
+        setOpen(false);
+        onCloseDrawer?.();
         navigate("/login");
     };
 
     return (
-        <div className={styles.userWrapper}>
-            <div className={styles.user}>
-                <img src={userIcon} alt="user" width={28} height={28} />
-                {currentUser ? <span>Hello, <label>{currentUser.name}</label></span> : "Hello, Sign in"
-                }
-            </div>
+        <div className={styles.userWrapper} ref={wrapperRef}>
 
-            <div className={styles.userDropdownMenu}>
-                {!currentUser && (
-                    <span className={styles.loginSign} onClick={handleLogin}>
-                        Login / Signup
-                    </span>
-                )}
+            {!isMobile && (
+                <>
+                    <div
+                        className={styles.user}
+                        onClick={() => setOpen((prev) => !prev)}
+                    >
+                        <img src={userIcon} alt="user" width={28} />
 
-                <ul>
-                    <li>
-                        <img width={20} height={20} src={profileIcon} alt="profile" />
-                        My Profile
-                    </li>
+                        {currentUser ? (
+                            <span>
+                                Hello, <b>{currentUser.name}</b>
+                            </span>
+                        ) : (
+                            "Hello, Sign in"
+                        )}
+                    </div>
 
-                    <li>
-                        <img width={20} height={20} src={carIcon} alt="cart" />
-                        My Orders
-                    </li>
+                    <div
+                        className={`${styles.userDropdownMenu} ${open ? styles.openMenu : ""
+                            }`}
+                    >
+                        {!currentUser && (
+                            <span className={styles.loginSign} onClick={handleLogin}>
+                                Login / Signup
+                            </span>
+                        )}
 
-                    {currentUser && (
-                        <li onClick={handleLogout} className={styles.logout}>
-                            <img width={20} height={20} src={logOut} alt="logout" />
-                            Sign Out
-                        </li>
+                        <ul>
+                            <li>
+                                <img src={profileIcon} width={20} />
+                                My Profile
+                            </li>
+
+                            <li>
+                                <img src={carIcon} width={20} />
+                                My Orders
+                            </li>
+
+                            {currentUser && (
+                                <li onClick={handleLogout} className={styles.logout}>
+                                    <img src={logOut} width={20} />
+                                    Sign Out
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                </>
+            )}
+
+            {isMobile && (
+                <div className={styles.mobileAlways}>
+                    {!currentUser ? (
+                        <div className={styles.user} onClick={handleLogin}>
+                            <img src={userIcon} alt="user" width={28} />
+                            Login / Signup
+                        </div>
+                    ) : (
+                        <ul>
+                            <li>
+                                <img src={profileIcon} width={20} />
+                                My Profile
+                            </li>
+
+                            <li>
+                                <img src={carIcon} width={20} />
+                                My Orders
+                            </li>
+
+                            <li onClick={handleLogout} className={styles.logout}>
+                                Logout
+                            </li>
+                        </ul>
                     )}
-                </ul>
-            </div>
+                </div>
+            )}
         </div>
     );
 };

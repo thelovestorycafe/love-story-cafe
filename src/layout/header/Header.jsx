@@ -1,12 +1,12 @@
-import React from "react";
-import styles from "./styles.module.css";
+import React, { useState, useMemo, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useMemo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import styles from "./styles.module.css";
 import UserProfile from "../../components/user-profile/UserProfile";
 import logo from "../../assets/images/logo.svg";
 import cartIcon from "../../assets/icon/cart.svg";
+import closeIcon from "../../assets/icon/close.svg";
 
 const Header = () => {
     const location = useLocation();
@@ -33,12 +33,10 @@ const Header = () => {
     }, [menuOpen]);
 
     return (
-        <React.Fragment>
-
+        <>
             <header className={styles.headerWrapper}>
                 <div className="container">
                     <nav className={styles.navWrap}>
-
                         <Link to="/" className={styles.logoWrap}>
                             <img src={logo} alt="Cafe Logo" />
                         </Link>
@@ -52,52 +50,51 @@ const Header = () => {
                         </ul>
 
                         <div className={styles.accountWrap}>
-                            <UserProfile currentUser={currentUser} />
-
-                            <Link to="/cart" className={styles.cart}>
-                                <img src={cartIcon} alt="cart" />
-                                {count > 0 && (
-                                    <span className={styles.cartBadge}>{count}</span>
-                                )}
-                            </Link>
-                        </div>
-
-                        <div className={styles.mobileRight}>
-                            <Link to="/cart" className={styles.cart}>
-                                <img src={cartIcon} alt="cart" />
-                                {count > 0 && (
-                                    <span className={styles.cartBadge}>{count}</span>
-                                )}
-                            </Link>
+                            <div className={styles.desktopOnly}>
+                                <UserProfile currentUser={currentUser} />
+                            </div>
 
                             <span
                                 className={styles.menuToggle}
-                                onClick={() => setMenuOpen(!menuOpen)}
+                                onClick={() => setMenuOpen(true)}
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" fill="currentColor" viewBox="0 0 16 16">
                                     <path fillRule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
                                 </svg>
                             </span>
+
+                            <Link to="/cart" className={styles.cart}>
+                                <img src={cartIcon} alt="cart" />
+                                {count > 0 && (
+                                    <span className={styles.cartBadge}>{count}</span>
+                                )}
+                            </Link>
                         </div>
-
-
-
                     </nav>
                 </div>
-
             </header>
-            <ul className={`${styles.mobileMenu} ${menuOpen ? styles.slideIn : styles.slideOut}`}>
-                <li><NavLink to="/" className={getNavClass} onClick={() => setMenuOpen(false)}>Home</NavLink></li>
-                <li><NavLink to="/menu" className={getNavClass} onClick={() => setMenuOpen(false)}>Menu</NavLink></li>
-                <li><NavLink to="/about-us" className={getNavClass} onClick={() => setMenuOpen(false)}>About</NavLink></li>
-                <li><NavLink to="/contact-us" className={getNavClass} onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
-                <li><NavLink to="/book-table" className={getNavClass} onClick={() => setMenuOpen(false)}>Reserve Now</NavLink></li>
 
-                <li className={styles.mobileUser}>
-                    <UserProfile currentUser={currentUser} />
-                </li>
-            </ul>
-        </React.Fragment>
+            {menuOpen && <div className={styles.overlay} onClick={() => setMenuOpen(false)} />}
+
+            <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ""}`}>
+                <div className={styles.mobileHeader}>
+                    <h3>Menu</h3>
+                    <span onClick={() => setMenuOpen(false)}>
+                        <img width={16} height={16} src={closeIcon} alt="Close" />
+                    </span>
+                </div>
+
+                <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
+                <NavLink to="/menu" onClick={() => setMenuOpen(false)}>Menu</NavLink>
+                <NavLink to="/about-us" onClick={() => setMenuOpen(false)}>About</NavLink>
+                <NavLink to="/contact-us" onClick={() => setMenuOpen(false)}>Contact</NavLink>
+                <NavLink to="/book-table" onClick={() => setMenuOpen(false)}>Reserve</NavLink>
+
+                <div className={styles.mobileUser}>
+                    <UserProfile currentUser={currentUser} onCloseDrawer={() => setMenuOpen(false)} />
+                </div>
+            </div>
+        </>
     );
 };
 
