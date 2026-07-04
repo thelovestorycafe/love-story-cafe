@@ -1,0 +1,84 @@
+.wrapper {
+    width: 100%;
+    position: relative;
+}
+.sliderArrow {
+    width: 36px;
+    height: 36px;
+    background: var(--surface);
+    border-radius: var(--radius-round);
+    border: none;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.sliderArrow.left {
+    left: -10px;
+}
+
+.sliderArrow.right {
+    right: -10px;
+}
+
+
+.sliderArrow.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+
+/* ================= SLIDER DOTS ================= */
+
+.sliderDots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.sliderDot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-round);
+
+    background: var(--border);
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.sliderDot.active {
+    width: 20px;
+    border-radius: var(--radius-xl);
+    background: var(--primary);
+}
+
+.sliderDot:hover {
+    background: var(--primary-light);
+}
+
+/* ================= MOBILE TWEAK ================= */
+
+@media (max-width: 480px) {
+    .sliderArrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .sliderArrow.left {
+        left: 4px;
+    }
+
+    .sliderArrow.right {
+        right: 4px;
+    }
+}

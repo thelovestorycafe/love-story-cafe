@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import Slider from "react-slick";
 import styles from "./styles.module.css";
+import KeenSlider from "../ui/keen-slider/KeenSlider";
 import Heading from "../ui/heading/Heading";
 import SignatureMenuCard from "./SignatureMenuCard";
 import { menuItems } from "../../services/menuItems";
@@ -14,37 +14,6 @@ const SignatureSection = () => {
             .slice(0, 8);
     }, []);
 
-    const settings = {
-
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: true,
-        infinite: false,
-        speed: 500,
-        swipeToSlide: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                },
-            },
-        ],
-    };
-
     return (
         <section className={styles.signatureSection}>
             <div className="container">
@@ -54,19 +23,22 @@ const SignatureSection = () => {
                     center
                 />
 
-                <Slider {...settings} className={styles.slider}>
+                <KeenSlider
+                    showArrows={true}
+                >
                     {randomItems.map((item) => (
-                        <SignatureMenuCard
-                            key={item.id}
-                            image={item.image}
-                            name={item.title}
-                            description={item.desc}
-                            price={item.price}
-                            offer={item.offer}
-                            item={item}
-                        />
+                        <div className="keen-slider__slide" key={item.id}>
+                            <SignatureMenuCard
+                                image={item.image}
+                                name={item.title}
+                                description={item.desc}
+                                price={item.price}
+                                offer={item.offer}
+                                item={item}
+                            />
+                        </div>
                     ))}
-                </Slider>
+                </KeenSlider>
             </div>
         </section >
     );

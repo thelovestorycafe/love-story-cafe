@@ -11,8 +11,7 @@
 }
 
 .left {
-    min-width: 300px;
-    flex: 1;
+    width: 300px;
 }
 
 .left h2 {
@@ -29,7 +28,13 @@
 }
 
 .sliderWrap {
-    flex: 2;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sliderWrap .wrapper,
+.sliderWrap ::global .keen-slider {
+    width: 100%;
 }
 
 .card {

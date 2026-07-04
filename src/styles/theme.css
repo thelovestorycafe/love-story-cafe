@@ -111,6 +111,9 @@ a {
     color: inherit;
 }
 
+.keen-slider__slide {
+    display: flex;
+}
 
 /* ================= CONTAINER ================= */
 .container {

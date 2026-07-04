@@ -1,6 +1,6 @@
 import Button from "../ui/button/Button";
 import styles from "./styles.module.css";
-import Slider from "react-slick";
+import KeenSlider from "../ui/keen-slider/KeenSlider";
 import quoteIcon from "../../assets/icon/quotes.svg";
 import arrowIcon from "../../assets/icon/arrow-right-long-w.svg";
 
@@ -33,34 +33,6 @@ const testimonials = [
 
 const Testimonials = () => {
 
-    const settings = {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true,
-        infinite: false,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                },
-            },
-        ],
-    };
-
     return (
         <section className={styles.testimonials}>
             <div className="container">
@@ -77,25 +49,30 @@ const Testimonials = () => {
                         </Button>
                     </div>
                     <div className={styles.sliderWrap}>
-                        <Slider {...settings}>
+                        <KeenSlider
+                        //  showArrows={true}
+                        perView={3}
+                        >
                             {testimonials.map((item) => (
-                                <div className={styles.card} key={item.id}>
-                                    <div className={styles.userImage}>
-                                        <img src={item.image} alt={item.name} />
-                                    </div>
+                                <div className="keen-slider__slide"  key={item.id}>
+                                    <div className={styles.card}>
+                                        <div className={styles.userImage}>
+                                            <img src={item.image} alt={item.name} />
+                                        </div>
 
-                                    <div className={styles.content}>
-                                        <label className={styles.quote}>
-                                            <img width={20} height={20} src={quoteIcon} alt="Testimonial" />
-                                        </label>
+                                        <div className={styles.content}>
+                                            <label className={styles.quote}>
+                                                <img width={20} height={20} src={quoteIcon} alt="Testimonial" />
+                                            </label>
 
-                                        <p>{item.review}</p>
-                                        <h4>{item.name}</h4>
-                                        <span>{item.role}</span>
+                                            <p>{item.review}</p>
+                                            <h4>{item.name}</h4>
+                                            <span>{item.role}</span>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
-                        </Slider>
+                        </KeenSlider>
                     </div>
                 </div>
             </div>

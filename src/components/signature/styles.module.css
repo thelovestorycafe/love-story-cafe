@@ -8,9 +8,9 @@
 }
 
 .menuCard {
+    width: 100%;
     padding: var(--space-lg) var(--space-md);
     background: rgba(255, 255, 255, 0.9);
-    /* backdrop-filter: blur(8px); */
     border-radius: var(--radius-lg);
     text-align: center;
     border: 1px solid var(--border);
@@ -99,6 +99,10 @@
 }
 
 @media (max-width: 768px) {
+    .signatureSection {
+        padding: var(--space-xl) 0;
+    }
+
     .menuCard {
         padding: var(--space-md);
     }

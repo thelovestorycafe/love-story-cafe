@@ -9,93 +9,138 @@ import cartIcon from "../../assets/icon/cart.svg";
 import closeIcon from "../../assets/icon/close.svg";
 
 const Header = () => {
-    const location = useLocation();
-    const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const getNavClass = ({ isActive }) =>
-        `${styles.navLink} ${isActive ? styles.active : ""}`;
+  const getNavClass = ({ isActive }) =>
+    `${styles.navLink} ${isActive ? styles.active : ""}`;
 
-    const count = useSelector(({ cart }) =>
-        cart.items.reduce((total, item) => total + item.quantity, 0)
-    );
+  const count = useSelector(({ cart }) =>
+    cart.items.reduce((total, item) => total + item.quantity, 0),
+  );
 
-    const currentUser = useMemo(() => {
-        try {
-            const user = localStorage.getItem("currentUser");
-            return user ? JSON.parse(user) : null;
-        } catch {
-            return null;
-        }
-    }, [location.pathname]);
+  const currentUser = useMemo(() => {
+    try {
+      const user = localStorage.getItem("currentUser");
+      return user ? JSON.parse(user) : null;
+    } catch {
+      return null;
+    }
+  }, [location.pathname]);
 
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
-    }, [menuOpen]);
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
 
-    return (
-        <>
-            <header className={styles.headerWrapper}>
-                <div className="container">
-                    <nav className={styles.navWrap}>
-                        <Link to="/" className={styles.logoWrap}>
-                            <img src={logo} alt="Cafe Logo" />
-                        </Link>
+  return (
+    <>
+      <header className={styles.headerWrapper}>
+        <div className="container">
+          <nav className={styles.navWrap}>
+            <Link to="/" className={styles.logoWrap}>
+              <img src={logo} alt="Cafe Logo" />
+            </Link>
 
-                        <ul className={styles.navLinks}>
-                            <li><NavLink to="/" className={getNavClass}>Home</NavLink></li>
-                            <li><NavLink to="/menu" className={getNavClass}>Menu</NavLink></li>
-                            <li><NavLink to="/about-us" className={getNavClass}>About</NavLink></li>
-                            <li><NavLink to="/contact-us" className={getNavClass}>Contact</NavLink></li>
-                            <li><NavLink to="/book-table" className={getNavClass}>Reserve Now</NavLink></li>
-                        </ul>
+            <ul className={styles.navLinks}>
+              <li>
+                <NavLink to="/" className={getNavClass}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/menu" className={getNavClass}>
+                  Menu
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/about-us" className={getNavClass}>
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact-us" className={getNavClass}>
+                  Contact
+                </NavLink>
+              </li>
+              <li>
+                <a
+                  href="https://www.zomato.com/kolkata/the-love-story-cafe-science-city-area/book"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.navLink}
+                >
+                  Reserve Now
+                </a>
+              </li>
+              {/* <li><NavLink to="/book-table" className={getNavClass}>Reserve Now</NavLink></li> */}
+            </ul>
 
-                        <div className={styles.accountWrap}>
-                            <div className={styles.desktopOnly}>
-                                <UserProfile currentUser={currentUser} />
-                            </div>
+            <div className={styles.accountWrap}>
+              <div className={styles.desktopOnly}>
+                <UserProfile currentUser={currentUser} />
+              </div>
 
-                            <span
-                                className={styles.menuToggle}
-                                onClick={() => setMenuOpen(true)}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path fillRule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                                </svg>
-                            </span>
+              <span
+                className={styles.menuToggle}
+                onClick={() => setMenuOpen(true)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </span>
 
-                            <Link to="/cart" className={styles.cart}>
-                                <img src={cartIcon} alt="cart" />
-                                {count > 0 && (
-                                    <span className={styles.cartBadge}>{count}</span>
-                                )}
-                            </Link>
-                        </div>
-                    </nav>
-                </div>
-            </header>
-
-            {menuOpen && <div className={styles.overlay} onClick={() => setMenuOpen(false)} />}
-
-            <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ""}`}>
-                <div className={styles.mobileHeader}>
-                    <h3>Menu</h3>
-                    <span onClick={() => setMenuOpen(false)}>
-                        <img width={16} height={16} src={closeIcon} alt="Close" />
-                    </span>
-                </div>
-
-                <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
-                <NavLink to="/menu" onClick={() => setMenuOpen(false)}>Menu</NavLink>
-                <NavLink to="/about-us" onClick={() => setMenuOpen(false)}>About</NavLink>
-                <NavLink to="/contact-us" onClick={() => setMenuOpen(false)}>Contact</NavLink>
-                <NavLink to="/book-table" onClick={() => setMenuOpen(false)}>Reserve</NavLink>
-
-                <div className={styles.mobileUser}>
-                    <UserProfile currentUser={currentUser} onCloseDrawer={() => setMenuOpen(false)} />
-                </div>
+              <Link to="/cart" className={styles.cart}>
+                <img src={cartIcon} alt="cart" />
+                {count > 0 && <span className={styles.cartBadge}>{count}</span>}
+              </Link>
             </div>
-        </>
-    );
+          </nav>
+        </div>
+      </header>
+
+      {menuOpen && (
+        <div className={styles.overlay} onClick={() => setMenuOpen(false)} />
+      )}
+
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ""}`}>
+        <div className={styles.mobileHeader}>
+          <h3>Menu</h3>
+          <span onClick={() => setMenuOpen(false)}>
+            <img width={16} height={16} src={closeIcon} alt="Close" />
+          </span>
+        </div>
+
+        <NavLink to="/" onClick={() => setMenuOpen(false)}>
+          Home
+        </NavLink>
+        <NavLink to="/menu" onClick={() => setMenuOpen(false)}>
+          Menu
+        </NavLink>
+        <NavLink to="/about-us" onClick={() => setMenuOpen(false)}>
+          About
+        </NavLink>
+        <NavLink to="/contact-us" onClick={() => setMenuOpen(false)}>
+          Contact
+        </NavLink>
+        {/* <NavLink to="/book-table" onClick={() => setMenuOpen(false)}>Reserve</NavLink> */}
+
+        <div className={styles.mobileUser}>
+          <UserProfile
+            currentUser={currentUser}
+            onCloseDrawer={() => setMenuOpen(false)}
+          />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Header;
