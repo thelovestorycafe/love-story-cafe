@@ -11,7 +11,7 @@
 }
 
 .left {
-    width: 300px;
+    width: 360px;
 }
 
 .left h2 {
@@ -28,8 +28,7 @@
 }
 
 .sliderWrap {
-    flex: 1;
-    overflow: hidden;
+    width: calc(100% - 360px)
 }
 
 .sliderWrap .wrapper,

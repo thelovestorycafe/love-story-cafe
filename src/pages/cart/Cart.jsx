@@ -2,98 +2,159 @@ import React from "react";
 import styles from "./styles.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../../components/ui/button/Button";
-import { increaseQuantity, decreaseQuantity, removeFromCart } from "../../features/cart/cartSlice";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removeFromCart,
+} from "../../features/cart/cartSlice";
 
 const Cart = () => {
-    const dispatch = useDispatch();
-    const cartItems = useSelector((state) => state.cart.items);
-    const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalAmount = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+  const deliveryCharge = cartItems.length ? 40 : 0;
+  const total = totalAmount + deliveryCharge;
 
-    return (
-        <section className={styles.cartWrapper}>
-            <div className="container">
-                <h2 className={styles.heading}>Your Cart</h2>
+  return (
+    <section className={styles.cartWrapper}>
+      <div className="container">
+        <h2 className={styles.heading}>Your Cart</h2>
 
-                <div className={styles.cartLayout}>
+        <div className={styles.cartLayout}>
+          {/* LEFT - Items */}
+          <div className={styles.cartItems}>
+            {cartItems.length === 0 ? (
+              <div className={styles.emptyCart}>
+                <div className={styles.emptyIcon}>🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add your favourite dishes to start your order.</p>
 
-                    {/* LEFT - Items */}
-                    <div className={styles.cartItems}>
-                        {cartItems.length === 0 ? (
-                            <div className={styles.emptyCart}>
-                                Your cart is empty.
-                            </div>
-                        ) : (
-                            cartItems.map((item) => (
-                                <div className={styles.cartItem} key={item.id}>
-                                    <img src={item.image} alt={item.title} />
+                <Button onClick={() => (window.location.href = "/menu")}>
+                  Browse Menu
+                </Button>
+              </div>
+            ) : (
+              cartItems.map((item) => (
+                <div className={styles.cartItem} key={item.id}>
+                  <img src={item.image} alt={item.title} />
 
-                                    <div className={styles.info}>
-                                        <h4>{item.title}</h4>
-                                        <p>{item.desc}</p>
-                                        <p className={styles.price}>₹{item.price}</p>
+                  <div className={styles.info}>
+                    <h4>{item.title}</h4>
+                    <p>{item.desc}</p>
+                    <p className={styles.price}>₹{item.price}</p>
 
-                                        <div className={styles.qty}>
-                                            <button
-                                                type="button"
-                                                onClick={() => dispatch(decreaseQuantity(item.id))}
-                                            >
-                                                -
-                                            </button>
-                                            <span>{item.quantity}</span>
-                                            <button
-                                                type="button"
-                                                onClick={() => dispatch(increaseQuantity(item.id))}
-                                            >
-                                                +
-                                            </button>
-                                        </div>
-                                        <button
-                                            type="button"
-                                            className={styles.removeBtn}
-                                            onClick={() => dispatch(removeFromCart(item.id))}
-                                        >
-                                            Remove
-                                        </button>
-                                    </div>
-
-                                    <div className={styles.itemTotal}>
-                                        ₹{item.price * item.quantity}
-                                    </div>
-                                </div>
-                            ))
-                        )}
+                    <div className={styles.qty}>
+                      <button
+                        type="button"
+                        onClick={() => dispatch(decreaseQuantity(item.id))}
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        type="button"
+                        onClick={() => dispatch(increaseQuantity(item.id))}
+                      >
+                        +
+                      </button>
                     </div>
+                    <button
+                      type="button"
+                      className={styles.removeBtn}
+                      onClick={() => dispatch(removeFromCart(item.id))}
+                    >
+                      Remove
+                    </button>
+                  </div>
 
-                    {/* RIGHT - Summary */}
-                    <div className={styles.summary}>
-                        <h3>Price Details</h3>
-
-                        <div className={styles.row}>
-                            <span>Subtotal</span>
-                            <span>₹{totalAmount}</span>
-                        </div>
-
-                        <div className={styles.row}>
-                            <span>Delivery</span>
-                            <span>₹40</span>
-                        </div>
-
-                        <hr />
-
-                        <div className={`${styles.row} ${styles.totalRow}`}>
-                            <span>Total</span>
-                            <span>₹{totalAmount + 40}</span>
-                        </div>
-
-                        <Button className={styles.checkoutBtn}>
-                            Proceed to Checkout
-                        </Button>
-                    </div>
-
+                  <div className={styles.itemTotal}>
+                    ₹{item.price * item.quantity}
+                  </div>
                 </div>
+              ))
+            )}
+          </div>
+
+          {/* RIGHT - Summary */}
+          {/* <div className={styles.summary}>
+            <h3>Price Details</h3>
+
+            <div className={styles.row}>
+              <span>Subtotal</span>
+              <span>₹{totalAmount}</span>
             </div>
-        </section>
-    );
+
+            <div className={styles.row}>
+              <span>Delivery</span>
+              <span>₹40</span>
+            </div>
+
+            <hr />
+
+            <div className={`${styles.row} ${styles.totalRow}`}>
+              <span>Total</span>
+              <span>₹{totalAmount + 40}</span>
+            </div>
+
+            <Button className={styles.checkoutBtn}>Proceed to Checkout</Button>
+          </div> */}
+          <div className={styles.summary}>
+            <h3>Price Details</h3>
+
+            <div className={styles.row}>
+              <span>Subtotal</span>
+              <span>₹{totalAmount}</span>
+            </div>
+
+            <div className={styles.row}>
+              <span>Delivery</span>
+              <span>₹{deliveryCharge}</span>
+            </div>
+
+            <hr />
+
+            <div className={`${styles.row} ${styles.totalRow}`}>
+              <span>Total</span>
+              <span>₹{total}</span>
+            </div>
+
+            {cartItems.length > 0 ? (
+              <a
+                href={`https://wa.me/917980903088?text=${encodeURIComponent(
+                  `Hi Love Story Cafe,
+
+I would like to place an order.
+
+${cartItems
+  .map(
+    (item) =>
+      `${item.title} x${item.quantity} - ₹${item.price * item.quantity}`,
+  )
+  .join("\n")}
+
+Subtotal: ₹${totalAmount}
+Delivery: ₹${deliveryCharge}
+Total: ₹${total}`,
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.whatsappBtn}
+              >
+                Order on WhatsApp
+              </a>
+            ) : (
+              <button className={styles.disabledBtn} disabled>
+                Browse Menu to Order
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Cart;
