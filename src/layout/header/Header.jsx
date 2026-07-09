@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 import styles from "./styles.module.css";
@@ -9,7 +9,7 @@ import logo from "../../assets/images/logo.svg";
 import closeIcon from "../../assets/icon/close.svg";
 
 const Header = () => {
-  const location = useLocation();
+  // const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const getNavClass = ({ isActive }) =>
@@ -19,14 +19,14 @@ const Header = () => {
   //   cart.items.reduce((total, item) => total + item.quantity, 0),
   // );
 
-  const currentUser = useMemo(() => {
-    try {
-      const user = localStorage.getItem("currentUser");
-      return user ? JSON.parse(user) : null;
-    } catch {
-      return null;
-    }
-  }, [location.pathname]);
+  // const currentUser = useMemo(() => {
+  //   try {
+  //     const user = localStorage.getItem("currentUser");
+  //     return user ? JSON.parse(user) : null;
+  //   } catch {
+  //     return null;
+  //   }
+  // }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -70,7 +70,19 @@ const Header = () => {
                 <UserProfile currentUser={currentUser} />
               </div> */}
 
-              {/* <span
+              {/* <Link to="/cart" className={styles.cart}>
+                <img src={cartIcon} alt="cart" />
+                {count > 0 && <span className={styles.cartBadge}>{count}</span>}
+              </Link> */}
+              <a
+                href="https://www.zomato.com/kolkata/the-love-story-cafe-science-city-area/book"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.reserveNow}
+              >
+                Reserve Now
+              </a>
+              <span
                 className={styles.menuToggle}
                 onClick={() => setMenuOpen(true)}
               >
@@ -85,20 +97,7 @@ const Header = () => {
                     d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
                   />
                 </svg>
-              </span> */}
-
-              {/* <Link to="/cart" className={styles.cart}>
-                <img src={cartIcon} alt="cart" />
-                {count > 0 && <span className={styles.cartBadge}>{count}</span>}
-              </Link> */}
-              <a
-                href="https://www.zomato.com/kolkata/the-love-story-cafe-science-city-area/book"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.reserveNow}
-              >
-                Reserve Now
-              </a>
+              </span>
             </div>
           </nav>
         </div>
@@ -130,12 +129,12 @@ const Header = () => {
         </NavLink>
         {/* <NavLink to="/book-table" onClick={() => setMenuOpen(false)}>Reserve</NavLink> */}
 
-        <div className={styles.mobileUser}>
+        {/* <div className={styles.mobileUser}>
           <UserProfile
             currentUser={currentUser}
             onCloseDrawer={() => setMenuOpen(false)}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );
