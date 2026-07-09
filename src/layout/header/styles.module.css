@@ -54,7 +54,7 @@
     width: 100%;
 }
 
-.navLinks li:last-child a {
+.reserveNow {
     padding: 6px 14px;
     background: var(--primary);
     color: #fff !important;

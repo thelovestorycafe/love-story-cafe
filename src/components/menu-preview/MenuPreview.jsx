@@ -1,34 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 import Heading from "../ui/heading/Heading";
-import CategoryTabs from "../category-tabs/CategoryTabs";
-import MenuCardHome from "../menu-card-home/MenuCardHome";
-import { menuItems } from "../../services/menuItems";
+import Button from "../ui/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const MenuPreview = () => {
-    const [active, setActive] = useState("All");
+  const navigate = useNavigate();
+  const handleViewMenu = () => {
+    navigate("/menu");
+  };
 
-    const filtered =
-        active === "All"
-            ? menuItems
-            : menuItems.filter(item => item.category === active);
+  return (
+    <section className={styles.wrapper}>
+      <div className="container">
+        <div className={styles.content}>
+          <Heading label="Our Menu" title="Explore Our Delicious Menu" />
+          <p className={styles.quote}>
+            Every dish has a story, every flavour creates a memory.
+          </p>
+          <p className={styles.description}>
+            Welcome to <strong>The Love Story Cafe</strong>, where delicious
+            food, warm hospitality, and memorable moments come together. Explore
+            our carefully crafted menu featuring mouth-watering pizzas, burgers,
+            pasta, refreshing beverages, desserts, and signature chef specials—
+            all prepared with fresh ingredients and served with love.
+          </p>
 
-    return (
-        <section className={styles.menuSection}>
-            <div className="container">
-                <Heading
-                    label="Our Menu"
-                    title="Explore Our Delicious Menu"
-                    center={true}
-                />
-                <CategoryTabs active={active} setActive={setActive} />
-
-                <div className={styles.menuGrid}>
-                    <MenuCardHome items={filtered} />
-                </div>
-            </div>
-        </section>
-    );
-}
+          <Button onClick={handleViewMenu}>Explore Full Menu</Button>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default MenuPreview;

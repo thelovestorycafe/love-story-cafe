@@ -1,15 +1,40 @@
-.menuSection {
-    padding: var(--space-3xl) 0;
+.wrapper {
+  padding: var(--space-3xl) 0;
+  background: url(./images/food-bg.jpg) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.menuGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+.content {
+  width: 560px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 40px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
 }
 
-@media(max-width:768px) {
-    .menuGrid {
-        grid-template-columns: 1fr;
-    }
+.quote {
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.description {
+  margin-bottom: var(--space-xl);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .description {
+    margin-bottom: var(--space-lg);
+    color: var(--text-secondary);
+  }
 }

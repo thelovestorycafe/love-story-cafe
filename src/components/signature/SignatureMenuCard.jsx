@@ -1,50 +1,57 @@
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addToCart } from "../../features/cart/cartSlice";
+// import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import { addToCart } from "../../features/cart/cartSlice";
 
-const SignatureMenuCard = ({ name, description, price, image, offer, item }) => {
+const SignatureMenuCard = ({
+  name,
+  description,
+  price,
+  image,
+  offer,
+  // item,
+}) => {
+  //   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  // const handleCardClick = () => {
+  //   navigate(`/product/${item.id}`);
+  // };
+  // const handleAdd = (e) => {
+  //     e.stopPropagation();
+  //     dispatch(addToCart(item));
+  // };
 
-    const handleCardClick = () => {
-        navigate(`/product/${item.id}`)
-    }
-    const handleAdd = (e) => {
-        e.stopPropagation();
-        dispatch(addToCart(item));
-    };
+  return (
+    <div className={styles.menuCard}>
+      <div className={styles.menuCardImage}>
+        <img src={image} alt={name} />
 
+        {offer?.active && (
+          <span className={styles.offerBadge}>{offer.text}</span>
+        )}
+      </div>
 
-    return (
-        <div onClick={handleCardClick} className={styles.menuCard}>
+      <h4 className={styles.menuCardTitle}>{name}</h4>
 
-            <div className={styles.menuCardImage}>
-                <img src={image} alt={name} />
+      <p className={styles.menuCardSubtitle}>{description}</p>
 
-                {offer?.active && (
-                    <span className={styles.offerBadge}>
-                        {offer.text}
-                    </span>
-                )}
-            </div>
-
-            <h4 className={styles.menuCardTitle}>{name}</h4>
-
-            <p className={styles.menuCardSubtitle}>
-                {description}
-            </p>
-
-            <div className={styles.bottomRow}>
-                <span className={styles.price}>₹{price}</span>
-                <button onClick={handleAdd} className={styles.addBtn}>
-                    Add
-                </button>
-            </div>
-
-        </div>
-    );
+      <div className={styles.bottomRow}>
+        <span className={styles.price}>₹{price}</span>
+        {/* <button onClick={handleAdd} className={styles.addBtn}>
+            Order Now
+          </button> */}
+        <a
+          href="https://www.zomato.com/kolkata/the-love-story-cafe-science-city-area/book"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.addBtn}
+        >
+          Order Now
+        </a>
+      </div>
+    </div>
+  );
 };
 
 export default SignatureMenuCard;
