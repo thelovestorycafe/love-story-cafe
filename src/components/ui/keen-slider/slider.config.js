@@ -25,26 +25,5 @@ export const sliderPresets = {
                 },
             },
         },
-    },
-
-    product: {
-        slides: {
-            perView: 4,
-            spacing: 16,
-        },
-    },
-
-    banner: {
-        slides: {
-            perView: 1,
-            spacing: 0,
-        },
-    },
-
-    peek: {
-        slides: {
-            perView: 1.2,
-            spacing: 10,
-        },
-    },
-};
+    }
+}
