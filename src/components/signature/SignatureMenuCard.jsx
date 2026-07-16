@@ -38,11 +38,9 @@ const SignatureMenuCard = ({
 
       <div className={styles.bottomRow}>
         <span className={styles.price}>₹{price}</span>
-        {/* <button onClick={handleAdd} className={styles.addBtn}>
-            Order Now
-          </button> */}
+
         <a
-          href="https://www.zomato.com/kolkata/the-love-story-cafe-science-city-area/book"
+          href="https://www.zomato.com/kolkata/the-love-story-cafe-science-city-area/order"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.addBtn}
@@ -50,6 +48,10 @@ const SignatureMenuCard = ({
           Order Now
         </a>
       </div>
+
+      <p className={styles.deliveryNote}>
+        Food will be delivered by tomorrow evening only.
+      </p>
     </div>
   );
 };
